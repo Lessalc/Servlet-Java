@@ -23,6 +23,14 @@ public class NovaEmpresaServlet extends HttpServlet {
 		System.out.println("Cadastrando nova empresa");
 		String nomeEmpresa = request.getParameter("nome");
 		String cnpjEmpresa = request.getParameter("cnpj");
+		
+		Empresa empresa = new Empresa();
+		empresa.setNome(nomeEmpresa);
+		empresa.setCnpj(cnpjEmpresa);
+		
+		Banco banco = new Banco();
+		banco.adiciona(empresa);
+		
   		PrintWriter out = response.getWriter();
   		out.println("<html><body><h3>Empresa " + nomeEmpresa +" Cadastrada!</h3>"
   				+ "<p>CNPJ: "+cnpjEmpresa+"</p></body></html>");
