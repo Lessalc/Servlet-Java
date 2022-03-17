@@ -12,11 +12,11 @@ public class Banco {
 	static {
 		Empresa empresa = new Empresa();
 		empresa.setNome("Alura");
-		empresa.setCnpj("13.458.941/0001-84");
+		empresa.setCnpj("05.555.382/0001-33");
 		empresas.add(empresa);
 		empresa = new Empresa();
 		empresa.setNome("Caelum");
-		empresa.setCnpj("11.658.167/0001-35");
+		empresa.setCnpj("37.335.177/0001-59");
 		empresas.add(empresa);
 	}
 	

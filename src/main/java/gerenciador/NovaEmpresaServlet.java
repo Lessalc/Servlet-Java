@@ -3,6 +3,7 @@ package gerenciador;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,19 +22,20 @@ public class NovaEmpresaServlet extends HttpServlet {
 	 */
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("Cadastrando nova empresa");
-		String nomeEmpresa = request.getParameter("nome");
-		String cnpjEmpresa = request.getParameter("cnpj");
 		
 		Empresa empresa = new Empresa();
-		empresa.setNome(nomeEmpresa);
-		empresa.setCnpj(cnpjEmpresa);
+		empresa.setNome(request.getParameter("nome"));
+		empresa.setCnpj(request.getParameter("cnpj"));
 		
 		Banco banco = new Banco();
 		banco.adiciona(empresa);
 		
-  		PrintWriter out = response.getWriter();
-  		out.println("<html><body><h3>Empresa " + nomeEmpresa +" Cadastrada!</h3>"
-  				+ "<p>CNPJ: "+cnpjEmpresa+"</p></body></html>");
+		// Chamar o JSP
+		RequestDispatcher rd = request.getRequestDispatcher("/novaEmpresaResponse.jsp");
+		request.setAttribute("empresa", empresa.getNome());
+		request.setAttribute("cnpj", empresa.getCnpj());
+		rd.forward(request, response);
+		
 	}
 
 }
