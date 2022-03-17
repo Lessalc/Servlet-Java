@@ -21,9 +21,11 @@ public class NovaEmpresaServlet extends HttpServlet {
 	 */
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("Cadastrando nova empresa");
-		String name = request.getParameter("nome");
+		String nomeEmpresa = request.getParameter("nome");
+		String cnpjEmpresa = request.getParameter("cnpj");
   		PrintWriter out = response.getWriter();
-  		out.println("<html><body><h3>Empresa "+ name +" Cadastrada!</h3></body></html>");
+  		out.println("<html><body><h3>Empresa " + nomeEmpresa +" Cadastrada!</h3>"
+  				+ "<p>CNPJ: "+cnpjEmpresa+"</p></body></html>");
 	}
 
 }
